@@ -150,7 +150,15 @@ export default function BeerAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ display: { xs: 'none', sm: 'block' } }}
+            onClick={() => {
+              dispatch(allActions.navigationAction.openHomePage());
+            }}
+          >
             BeerList
           </Typography>
           <Search>

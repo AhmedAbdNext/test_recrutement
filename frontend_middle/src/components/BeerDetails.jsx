@@ -65,13 +65,6 @@ function BeerDetails(props) {
 
 BeerDetails.prototype = {
   id: PropTypes.number,
-  image: PropTypes.string,
-  name: PropTypes.string,
-  description: PropTypes.string,
-  ingredients: PropTypes.string,
-  brewersTips: PropTypes.string,
-  more: PropTypes.string,
-  volume: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 export default BeerDetails;
