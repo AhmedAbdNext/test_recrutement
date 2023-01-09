@@ -1,5 +1,5 @@
 import {
-  getBoxHight,
+  getBoxHeight,
   convertTimeToNumber,
   sortInterval,
   isOverlapping,
@@ -21,9 +21,9 @@ import {
 } from './mock';
 
 test('should check get box hight', () => {
-  expect(getBoxHight(2400, 60)).toEqual(100);
-  expect(getBoxHight(2400, 120)).toEqual(200);
-  expect(getBoxHight(null, 120)).toEqual(0);
+  expect(getBoxHeight(2400, 60)).toEqual(100);
+  expect(getBoxHeight(2400, 120)).toEqual(200);
+  expect(getBoxHeight(null, 120)).toEqual(0);
 });
 test('should check convert time to number', () => {
   expect(convertTimeToNumber('10:30')).toEqual(10.5);

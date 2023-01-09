@@ -1,6 +1,6 @@
 import { difference } from 'lodash';
-export const getBoxHight = (windowHight, duration) => {
-  return Math.floor((windowHight / 1440) * duration);
+export const getBoxHeight = (windowHeight, duration) => {
+  return Math.floor((windowHeight / 1440) * duration);
 };
 
 export const convertTimeToNumber = (time) => {
