@@ -57,7 +57,7 @@ export const removeRedundancy = (event, index) => {
 
 export const getOverLappingEvents = (payload) => {
   const intervals = transformPayload(payload);
-  const dayIntervals = dayByMinntes(30);
+  const dayIntervals = dayByMinntes(5);
   const events = [];
   dayIntervals.forEach((currenDayInterval, index) => {
     intervals.forEach((element) => {
