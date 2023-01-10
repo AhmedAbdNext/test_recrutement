@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { customOverlappingPayload } from './utils/mock';
+import { customOverlappingPayload } from './mock/mock';
 import { getMarginTop, getEvents, getStartTime } from './utils';
 import { v4 as uuidv4 } from 'uuid';
 

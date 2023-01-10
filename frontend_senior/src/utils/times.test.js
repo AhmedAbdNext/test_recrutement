@@ -10,7 +10,7 @@ import {
   overlappingPayload,
   customOverlappingPayload,
   matrix,
-} from './mock';
+} from '../mock/mock';
 
 test('should check get box hight', () => {
   expect(getBoxHeight(2400, 60)).toEqual(100);

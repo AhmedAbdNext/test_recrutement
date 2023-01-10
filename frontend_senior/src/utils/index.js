@@ -8,15 +8,6 @@ import {
   getOverLappingEvents,
   getEvents,
 } from './events';
-import {
-  goodIntervals,
-  ovelappingIntervals,
-  normalPayload,
-  normalIntervals,
-  overlappingPayload,
-  customOverlappingPayload,
-  matrix,
-} from './mock';
 
 export {
   convertTimeToNumber,
@@ -31,11 +22,4 @@ export {
   getBoxHeight,
   getMarginTop,
   getEvents,
-  goodIntervals,
-  ovelappingIntervals,
-  normalPayload,
-  normalIntervals,
-  overlappingPayload,
-  customOverlappingPayload,
-  matrix,
 };
