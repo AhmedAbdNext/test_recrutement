@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { customOverlappingPayload } from './mock/mockData';
+import PropTypes from 'prop-types';
 import { getMarginTop, getEvents, getStartTime } from './utils';
 import { v4 as uuidv4 } from 'uuid';
 
-function App() {
+function App(props) {
   const [currentEvents, setCurrentEvents] = useState([]);
   const [startTime, setStartTime] = useState(0);
   //Styles
   const BoxStyle = {
-    border: '1px black solid',
+    border: '1px black dashed',
     margin: '1px',
     display: 'flex',
     justifyContent: 'center',
@@ -16,9 +16,10 @@ function App() {
   };
   useEffect(() => {
     const { innerWidth: width, innerHeight: height } = window;
-    const mEvents = getEvents(customOverlappingPayload, width, height);
+    const mEvents = getEvents(props.events, width, height);
     setCurrentEvents(mEvents);
-    setStartTime(getStartTime(customOverlappingPayload));
+    setStartTime(getStartTime(props.events));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div>
@@ -55,5 +56,9 @@ function App() {
     </div>
   );
 }
+
+App.propTypes = {
+  events: PropTypes.arrayOf(PropTypes.object),
+};
 
 export default App;

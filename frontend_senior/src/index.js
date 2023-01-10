@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { customOverlappingPayload } from './mock/mockData';
 import reportWebVitals from './reportWebVitals';
 
+/**
+ *  In fact, the [[customOverlappingPayload]] is our mock data,
+ *  you can modify the data over here,
+ *  and remember to follow the data structure
+ */
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App events={customOverlappingPayload} />
   </React.StrictMode>,
 );
 
