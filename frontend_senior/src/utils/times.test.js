@@ -1,16 +1,6 @@
-import {
-  getBoxHeight,
-  convertTimeToNumber,
-  sortInterval,
-  isOverlapping,
-  transformPayload,
-  removeRedundancy,
-  sortMatrix,
-  dayByMinntes,
-  getOverLappingMatrixIds,
-  getStartTime,
-  getMarginTop,
-} from './times';
+import { convertTimeToNumber, sortInterval, dayByMinntes, getStartTime } from './times';
+import { getBoxHeight, getMarginTop } from './screenSize';
+import { isOverlapping, transformPayload, sortEvents, removeRedundancy, getOverLappingEvents } from './events';
 // Mock
 import {
   goodIntervals,
@@ -80,13 +70,13 @@ test('should check sort Interval', () => {
 });
 
 test('should remove redundancy', () => {
-  expect(removeRedundancy(sortMatrix(matrix), 0)).toEqual([
+  expect(removeRedundancy(sortEvents(matrix), 0)).toEqual([
     [1, 2, 3],
     [4, 5],
   ]);
 });
 test('should check overlapping matrix Ids', () => {
-  expect(getOverLappingMatrixIds(customOverlappingPayload)).toEqual([
+  expect(getOverLappingEvents(customOverlappingPayload)).toEqual([
     [1, 2, 3],
     [4, 5],
   ]);

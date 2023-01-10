@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { customOverlappingPayload } from './utils/mock';
-import { getMarginTop, getMatrixEvents, getStartTime } from './utils/times';
+import { getMarginTop, getEvents, getStartTime } from './utils';
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
-  const [currentMatrixEvents, setCurrentMatrixEventss] = useState([]);
+  const [currentEvents, setCurrentEvents] = useState([]);
   const [startTime, setStartTime] = useState(0);
   //Styles
   const BoxStyle = {
@@ -16,14 +16,14 @@ function App() {
   };
   useEffect(() => {
     const { innerWidth: width, innerHeight: height } = window;
-    const matrixEvents = getMatrixEvents(customOverlappingPayload, width, height);
-    setCurrentMatrixEventss(matrixEvents);
+    const mEvents = getEvents(customOverlappingPayload, width, height);
+    setCurrentEvents(mEvents);
     setStartTime(getStartTime(customOverlappingPayload));
   }, []);
   return (
     <div>
-      {currentMatrixEvents.length &&
-        currentMatrixEvents.map((events) => {
+      {currentEvents.length &&
+        currentEvents.map((events) => {
           return (
             <div
               key={uuidv4()}
