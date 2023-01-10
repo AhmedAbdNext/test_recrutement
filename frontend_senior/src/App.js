@@ -1,38 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { customOverlappingPayload } from './utils/mock';
-import { getBoxHeight, getOverLappingMatrixIds } from './utils/times';
+import { getMarginTop, getMatrixEvents, getStartTime } from './utils/times';
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
-  const [currentMatrixIds, setCurrentMatrixIds] = useState([]);
-  //TODO remove useEffect
+  const [currentMatrixEvents, setCurrentMatrixEventss] = useState([]);
+  const [startTime, setStartTime] = useState(0);
+  //Styles
+  const BoxStyle = {
+    border: '1px black solid',
+    margin: '1px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  };
   useEffect(() => {
-    const matrixIds = getOverLappingMatrixIds(customOverlappingPayload);
-    const { innerHeight: width, innerHeight: height } = window;
-    //TODO add a sort interval
-    const boxWidth = Math.floor(width / matrixIds[0].length);
-    for (var i = 0; i < matrixIds.length; i++) {
-      var currentRow = matrixIds[i];
-      for (var j = 0; j < currentRow.length; j++) {
-        const currentPayload = customOverlappingPayload.find((item) => {
-          return item.id === currentRow[j];
-        });
-        currentRow[j] = {
-          [currentRow[j]]: {
-            width: boxWidth,
-            start: currentPayload.start,
-            duration: currentPayload.duration,
-            height: getBoxHeight(height, currentPayload.duration),
-          },
-        };
-      }
-    }
-    setCurrentMatrixIds(matrixIds);
+    const { innerWidth: width, innerHeight: height } = window;
+    const matrixEvents = getMatrixEvents(customOverlappingPayload, width, height);
+    setCurrentMatrixEventss(matrixEvents);
+    setStartTime(getStartTime(customOverlappingPayload));
   }, []);
   return (
     <div>
-      {currentMatrixIds.length &&
-        currentMatrixIds.map((el) => {
+      {currentMatrixEvents.length &&
+        currentMatrixEvents.map((events) => {
           return (
             <div
               key={uuidv4()}
@@ -41,18 +32,20 @@ function App() {
                 flexDirection: 'row',
               }}
             >
-              {el.map((ell) => {
+              {events.map((subEvent) => {
+                const currSubEvent = subEvent[Object.keys(subEvent)[0]];
+
                 return (
                   <div
                     key={uuidv4()}
                     style={{
-                      border: '1px black solid',
-                      height: ell[Object.keys(ell)[0]].height + 'px',
-                      width: ell[Object.keys(ell)[0]].width + 'px',
-                      margin: '1px',
+                      ...BoxStyle,
+                      height: currSubEvent.height + 'px',
+                      width: currSubEvent.width + 'px',
+                      marginTop: getMarginTop(window.innerHeight, startTime, currSubEvent.start) + 'px',
                     }}
                   >
-                    {ell.duration}
+                    <h1>{Object.keys(subEvent).toString()}</h1>
                   </div>
                 );
               })}

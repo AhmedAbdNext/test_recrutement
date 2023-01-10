@@ -8,6 +8,8 @@ import {
   sortMatrix,
   dayByMinntes,
   getOverLappingMatrixIds,
+  getStartTime,
+  getMarginTop,
 } from './times';
 // Mock
 import {
@@ -239,4 +241,17 @@ test('should show by minutes', () => {
     ['23:30', '23:45'],
     ['23:45', '24:00'],
   ]);
+});
+
+test('Should return the starting time', () => {
+  expect(getStartTime(overlappingPayload)).toEqual('05:36');
+  expect(getStartTime(normalPayload)).toEqual('15:00');
+  expect(getStartTime(customOverlappingPayload)).toEqual('09:00');
+});
+
+test('Should return the margin top', () => {
+  expect(getMarginTop(2400, '09:00', '10:00')).toEqual(100);
+  expect(getMarginTop(2400, '09:30', '10:00')).toEqual(50);
+  expect(getMarginTop(2400, '10:00', '10:00')).toEqual(0);
+  expect(getMarginTop(720, '09:00', '15:30')).toEqual(195);
 });

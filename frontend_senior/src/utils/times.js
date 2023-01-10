@@ -109,3 +109,33 @@ export const dayByMinntes = (minute) => {
   }
   return dayIntervals;
 };
+
+export const getStartTime = (payload) => {
+  return sortInterval(transformPayload(payload).map(({ duration }) => duration))[0][0] || [];
+};
+
+export const getMarginTop = (windowHeight, startTime, currentStartTime) => {
+  return getBoxHeight(windowHeight, (convertTimeToNumber(currentStartTime) - convertTimeToNumber(startTime)) * 60);
+};
+
+export const getMatrixEvents = (payload, width, height) => {
+  const matrixEvents = getOverLappingMatrixIds(payload);
+  const boxWidth = Math.floor(width / matrixEvents[0].length);
+  for (var i = 0; i < matrixEvents.length; i++) {
+    var currentRow = matrixEvents[i];
+    for (var j = 0; j < currentRow.length; j++) {
+      const currentPayload = payload.find((item) => {
+        return item.id === currentRow[j];
+      });
+      currentRow[j] = {
+        [currentRow[j]]: {
+          width: boxWidth,
+          start: currentPayload.start,
+          duration: currentPayload.duration,
+          height: getBoxHeight(height, currentPayload.duration),
+        },
+      };
+    }
+  }
+  return matrixEvents;
+};
